@@ -17,6 +17,11 @@ const { products, resolveProduct } = require('./products');
  * @param {string}   [opts.docsDir]     Path to the docs site inside the repo (default "docs")
  * @param {string}   [opts.url]         Site URL (default: the product's subdomain)
  * @param {object[]} [opts.navbarItems] Extra navbar items, placed before search
+ * @param {boolean}  [opts.hideFromSearchEngines] Send "X-Robots-Tag: noindex" (via _headers) until launch.
+ *                                      Don't use siteConfig.noIndex: it also empties the site search.
+ * @param {object}   [opts.docs]        Extra options for the docs plugin (e.g. docItemComponent)
+ * @param {Array}    [opts.plugins]     Extra Docusaurus plugins
+ * @param {Array}    [opts.themes]      Extra Docusaurus themes
  * @param {object}   [opts.overrides]   Deep-merged into the final config
  */
 function createConfig(opts) {
@@ -55,6 +60,7 @@ function createConfig(opts) {
             sidebarPath: './sidebars.js',
             editUrl,
             showLastUpdateTime: !!opts.repo,
+            ...opts.docs,
           },
           blog: false,
           theme: {},
@@ -63,7 +69,7 @@ function createConfig(opts) {
     ],
 
     themes: [
-      [path.join(__dirname, 'index.js'), { product }],
+      [path.join(__dirname, 'index.js'), { product, hideFromSearchEngines: !!opts.hideFromSearchEngines }],
       require.resolve('@docusaurus/theme-mermaid'),
       [
         require.resolve('@easyops-cn/docusaurus-search-local'),
@@ -75,7 +81,10 @@ function createConfig(opts) {
           explicitSearchResultPath: true,
         },
       ],
+      ...(opts.themes ?? []),
     ],
+
+    plugins: [...(opts.plugins ?? [])],
 
     themeConfig: {
       image: 'img/commercemind/symbol-purple.svg',

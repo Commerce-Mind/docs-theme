@@ -20,8 +20,6 @@ module.exports = createConfig({
   product: process.env.CM_PRODUCT || example,
   repo: 'Commerce-Mind/docs-theme',
   docsDir: 'playground',
-  overrides: {
-    // The playground is never deployed under a product domain.
-    noIndex: true,
-  },
+  // The playground is never deployed under a product domain.
+  hideFromSearchEngines: true,
 });

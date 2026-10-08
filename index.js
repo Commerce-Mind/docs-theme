@@ -7,6 +7,7 @@ const { resolveProduct } = require('./products');
 //  - product accent colors injected as CSS variables
 //  - global MDX components and a "Copy page" toolbar on every doc
 //  - llms.txt, llms-full.txt and a raw .md copy of every doc page at build time
+//  - optional _headers file that keeps the site out of search engines
 module.exports = function commerceMindTheme(context, options) {
   const product = resolveProduct(options.product);
   const c = product.colors;
@@ -35,7 +36,7 @@ module.exports = function commerceMindTheme(context, options) {
             tagName: 'style',
             innerHTML:
               `:root{--cm-graphic:${c.graphic};--cm-accent:${c.text};}` +
-              `html[data-theme='dark']{--cm-graphic:${c.graphicDark};--cm-accent:${c.textDark};}`,
+              `html[data-theme='dark']:root{--cm-graphic:${c.graphicDark};--cm-accent:${c.textDark};}`,
           },
         ],
       };
@@ -81,6 +82,19 @@ module.exports = function commerceMindTheme(context, options) {
       const full = pages
         .map((p) => `<!-- ${siteUrl}${p.permalink} -->\n\n${p.markdown}`)
         .join('\n\n---\n\n');
+
+      if (options.hideFromSearchEngines) {
+        // An HTTP header (read by Cloudflare Pages and Netlify), not a <meta> tag:
+        // the local search plugin skips pages that have a noindex meta tag.
+        const headersPath = path.join(outDir, '_headers');
+        let existing = '';
+        try {
+          existing = await fs.readFile(headersPath, 'utf8');
+        } catch {}
+        await fs.writeFile(headersPath, `${existing}/*
+  X-Robots-Tag: noindex, nofollow
+`);
+      }
 
       await fs.writeFile(path.join(outDir, 'llms.txt'), index);
       await fs.writeFile(path.join(outDir, 'llms-full.txt'), full);

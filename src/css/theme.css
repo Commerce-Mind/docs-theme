@@ -98,7 +98,9 @@ html:root {
   --ifm-color-danger-contrast-foreground: #6b140d;
 }
 
-html[data-theme='dark'] {
+/* :root raises specificity above both html:root and Infima's own dark rule,
+   so the result doesn't depend on rule order after CSS minification. */
+html[data-theme='dark']:root {
   --cm-paper: #17122e;
   --cm-surface: #211a40;
   --cm-surface-2: #2a2250;

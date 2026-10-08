@@ -38,6 +38,12 @@ module.exports = createConfig({
 
 `text` and `textDark` must reach WCAG AA (4.5:1) against `#FFFFFF` and `#17122E`.
 
+### Before launch
+
+`hideFromSearchEngines: true` keeps a site out of Google with an `X-Robots-Tag: noindex` header
+(a `_headers` file, read by Cloudflare Pages). Don't use `noIndex` in `overrides`: it adds a
+noindex meta tag to every page, and the local search skips those pages, so search finds nothing.
+
 ### Titles
 
 Every site uses the same pattern: `<Page> | Commerce Mind <Product>`. Name the start page
