@@ -1,0 +1,38 @@
+---
+title: Cards and badges
+description: Cards for navigation, badges for status.
+sidebar_position: 1
+---
+
+## Cards
+
+Cards are available in every `.mdx` file without imports. With `href` the whole card is a link.
+
+<CardGrid>
+  <Card title="Linked card" href="/getting-started">
+    The card links to another page.
+  </Card>
+  <Card title="Plain card">
+    No `href`, so this is just a box.
+  </Card>
+  <Card title="Title only" href="/typography" />
+</CardGrid>
+
+```mdx
+<CardGrid>
+  <Card title="Linked card" href="/getting-started">
+    The card links to another page.
+  </Card>
+</CardGrid>
+```
+
+## Badges
+
+Use badges in headings or text to mark status: <Badge>Default</Badge> <Badge type="accent">New</Badge>{' '}
+<Badge type="beta">Beta</Badge> <Badge type="deprecated">Deprecated</Badge>
+
+### Webhooks <Badge type="beta">Beta</Badge>
+
+```mdx
+### Webhooks <Badge type="beta">Beta</Badge>
+```

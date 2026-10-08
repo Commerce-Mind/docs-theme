@@ -1,0 +1,46 @@
+{
+  "name": "@commercemind/docusaurus-theme",
+  "version": "1.0.0",
+  "description": "Shared Docusaurus theme and config for Commerce Mind product documentation.",
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./config": "./config.js",
+    "./products": "./products.js"
+  },
+  "files": [
+    "index.js",
+    "config.js",
+    "products.js",
+    "src",
+    "static"
+  ],
+  "workspaces": [
+    "playground"
+  ],
+  "scripts": {
+    "start": "npm run start -w playground",
+    "build": "npm run build -w playground",
+    "serve": "npm run serve -w playground"
+  },
+  "dependencies": {
+    "@docusaurus/theme-mermaid": "3.10.2",
+    "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/schibsted-grotesk": "^5.3.0",
+    "@mermaid-js/layout-elk": "^0.1.9",
+    "clsx": "^2.1.1",
+    "prism-react-renderer": "^2.4.1"
+  },
+  "peerDependencies": {
+    "@docusaurus/core": "^3.10.0",
+    "@docusaurus/preset-classic": "^3.10.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "engines": {
+    "node": ">=20.0"
+  }
+}

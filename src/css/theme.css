@@ -1,0 +1,325 @@
+/* =================================================================
+   Commerce Mind docs theme
+   Neutrals and type from commercemind.se (cm.css). Product accent
+   comes from --cm-graphic / --cm-accent, injected per site by the
+   theme plugin (see products.js).
+   ================================================================= */
+
+html:root {
+  /* Neutrals (light) */
+  --cm-paper: #ffffff;
+  --cm-surface: #ffffff;
+  --cm-surface-2: #f1f2f4;
+  --cm-ink: #1b1730;
+  --cm-ink-2: #4b475c;
+  --cm-ink-3: #6e6a7e;
+  --cm-line: rgba(27, 23, 48, 0.12);
+  --cm-line-strong: rgba(27, 23, 48, 0.22);
+  --cm-on-accent: #ffffff;
+  --cm-code-bg: #f6f6f8;
+
+  /* Brand constants */
+  --cm-purple: #23184c;
+  --cm-dark-bg: #17122e;
+  --cm-dark-surface: #211a40;
+
+  /* Infima: color */
+  --ifm-color-primary: var(--cm-accent);
+  --ifm-color-primary-dark: color-mix(in srgb, var(--cm-accent) 90%, black);
+  --ifm-color-primary-darker: color-mix(in srgb, var(--cm-accent) 85%, black);
+  --ifm-color-primary-darkest: color-mix(in srgb, var(--cm-accent) 70%, black);
+  --ifm-color-primary-light: color-mix(in srgb, var(--cm-accent) 90%, white);
+  --ifm-color-primary-lighter: color-mix(in srgb, var(--cm-accent) 85%, white);
+  --ifm-color-primary-lightest: color-mix(in srgb, var(--cm-accent) 70%, white);
+
+  --ifm-background-color: var(--cm-paper);
+  --ifm-background-surface-color: var(--cm-surface);
+  --ifm-font-color-base: var(--cm-ink);
+  --ifm-font-color-secondary: var(--cm-ink-2);
+  --ifm-heading-color: var(--cm-ink);
+  --ifm-color-emphasis-300: var(--cm-line-strong);
+  --ifm-toc-border-color: var(--cm-line);
+  --ifm-hr-background-color: var(--cm-line);
+  --ifm-table-border-color: var(--cm-line);
+  --ifm-table-stripe-background: transparent;
+  --ifm-link-color: var(--cm-accent);
+  --ifm-link-hover-color: var(--cm-accent);
+  --ifm-menu-color: var(--cm-ink-2);
+  --ifm-menu-color-active: var(--cm-ink);
+  --ifm-menu-color-background-active: var(--cm-surface-2);
+  --ifm-menu-color-background-hover: var(--cm-surface-2);
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.92);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-height: 64px;
+  --ifm-footer-background-color: var(--cm-dark-bg);
+
+  /* Infima: type */
+  --ifm-font-family-base: 'Instrument Sans Variable', system-ui, sans-serif;
+  --ifm-heading-font-family: 'Schibsted Grotesk Variable', system-ui, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --ifm-heading-font-weight: 600;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.65;
+  --ifm-code-font-size: 88%;
+  --ifm-h1-font-size: 2.25rem;
+  --ifm-h2-font-size: 1.6rem;
+  --ifm-h3-font-size: 1.25rem;
+
+  /* Infima: shape */
+  --ifm-global-radius: 5px;
+  --ifm-code-border-radius: 5px;
+  --ifm-button-border-radius: 5px;
+  --ifm-card-border-radius: 8px;
+  --ifm-alert-border-radius: 5px;
+  --ifm-pre-background: var(--cm-code-bg);
+  --ifm-code-background: var(--cm-surface-2);
+  --docusaurus-highlighted-code-line-bg: rgba(27, 23, 48, 0.07);
+
+  /* Admonitions. Warning is deliberately amber-brown, not yellow,
+     so it never reads as a yellow product accent. */
+  --ifm-color-info: #2f5fb3;
+  --ifm-color-info-dark: #2f5fb3;
+  --ifm-color-info-contrast-background: #eef3fb;
+  --ifm-color-info-contrast-foreground: #1d3a6e;
+  --ifm-color-success: #0b7a5a;
+  --ifm-color-success-dark: #0b7a5a;
+  --ifm-color-success-contrast-background: #ebf7f2;
+  --ifm-color-success-contrast-foreground: #064433;
+  --ifm-color-secondary-dark: #6b4fd0;
+  --ifm-color-secondary-contrast-background: #f3f0fc;
+  --ifm-color-secondary-contrast-foreground: #2b1f63;
+  --ifm-color-warning: #b45309;
+  --ifm-color-warning-dark: #b45309;
+  --ifm-color-warning-contrast-background: #fbf1e6;
+  --ifm-color-warning-contrast-foreground: #5e2b05;
+  --ifm-color-danger: #b42318;
+  --ifm-color-danger-dark: #b42318;
+  --ifm-color-danger-contrast-background: #fcecea;
+  --ifm-color-danger-contrast-foreground: #6b140d;
+}
+
+html[data-theme='dark'] {
+  --cm-paper: #17122e;
+  --cm-surface: #211a40;
+  --cm-surface-2: #2a2250;
+  --cm-ink: #f4f2ec;
+  --cm-ink-2: #c4bfd4;
+  --cm-ink-3: #9a94ad;
+  --cm-line: rgba(255, 255, 255, 0.12);
+  --cm-line-strong: rgba(255, 255, 255, 0.22);
+  --cm-on-accent: #17122e;
+  --cm-code-bg: #120e25;
+
+  --ifm-navbar-background-color: rgba(23, 18, 46, 0.92);
+  --cm-dark-bg: #0f0b20;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.08);
+
+  --ifm-color-info-contrast-background: #1b2442;
+  --ifm-color-info-contrast-foreground: #c9d8f5;
+  --ifm-color-info-dark: #7fa3e6;
+  --ifm-color-success-contrast-background: #12302b;
+  --ifm-color-success-contrast-foreground: #c5f2e3;
+  --ifm-color-success-dark: #36e8ba;
+  --ifm-color-secondary-contrast-background: #251d48;
+  --ifm-color-secondary-contrast-foreground: #ddd6fa;
+  --ifm-color-secondary-dark: #a99bf0;
+  --ifm-color-warning-contrast-background: #33220f;
+  --ifm-color-warning-contrast-foreground: #f8dcc0;
+  --ifm-color-warning-dark: #f0a356;
+  --ifm-color-danger-contrast-background: #3a1717;
+  --ifm-color-danger-contrast-foreground: #f8cfcb;
+  --ifm-color-danger-dark: #f08a80;
+}
+
+/* ---------- Base ---------- */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2.5rem;
+  letter-spacing: -0.025em;
+}
+
+.markdown > p:first-of-type {
+  color: var(--cm-ink-2);
+}
+
+.markdown a:not(.card-link):not(.button) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.markdown a:not(.card-link):not(.button):hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cm-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-top: 3px solid var(--cm-graphic);
+  border-bottom: 1px solid var(--cm-line);
+}
+
+.navbar__brand {
+  gap: 2px;
+}
+
+.navbar__logo {
+  height: 22px;
+}
+
+.navbar__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 650;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.navbar__link {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* ---------- Sidebar and TOC ---------- */
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--cm-line) !important;
+}
+
+.menu__link {
+  font-size: 0.93rem;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 var(--cm-accent);
+  border-radius: 0 var(--ifm-global-radius) var(--ifm-global-radius) 0;
+}
+
+.menu__list-item-collapsible .menu__link--sublist {
+  font-weight: 600;
+  color: var(--cm-ink);
+}
+
+.table-of-contents__link {
+  font-size: 0.85rem;
+  color: var(--cm-ink-3);
+}
+
+.table-of-contents__link--active {
+  color: var(--cm-accent);
+  font-weight: 600;
+}
+
+/* ---------- Buttons ---------- */
+
+.button--primary {
+  --ifm-button-color: var(--cm-on-accent);
+  color: var(--cm-on-accent);
+}
+
+.button--primary:hover {
+  color: var(--cm-on-accent);
+}
+
+/* ---------- Code ---------- */
+
+.theme-code-block {
+  border: 1px solid var(--cm-line);
+  box-shadow: none !important;
+}
+
+[class*='codeBlockTitle'] {
+  font-size: 0.82rem;
+  border-bottom: 1px solid var(--cm-line) !important;
+}
+
+.markdown code:not(pre code) {
+  border: 1px solid var(--cm-line);
+  padding: 0.1em 0.35em;
+  vertical-align: baseline;
+}
+
+.tabs {
+  font-size: 0.9rem;
+}
+
+.tabs__item--active {
+  border-bottom-color: var(--cm-accent);
+}
+
+/* ---------- Admonitions ---------- */
+
+.theme-admonition {
+  border: 1px solid var(--ifm-alert-border-color);
+  border-left-width: 4px;
+  box-shadow: none;
+}
+
+/* ---------- Tables ---------- */
+
+.markdown table {
+  display: table;
+  width: 100%;
+  font-size: 0.93rem;
+}
+
+.markdown table thead tr {
+  border-bottom: 2px solid var(--cm-line-strong);
+}
+
+.markdown table th {
+  background: transparent;
+  text-align: left;
+  font-weight: 600;
+}
+
+.markdown table td,
+.markdown table th {
+  border-left: 0;
+  border-right: 0;
+}
+
+@media (max-width: 996px) {
+  .markdown table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+.footer--dark {
+  --ifm-footer-background-color: var(--cm-dark-bg);
+  --ifm-footer-link-color: #c4bfd4;
+  --ifm-footer-title-color: #ffffff;
+  border-top: 3px solid var(--cm-graphic);
+}
+
+.footer__title {
+  font-family: var(--ifm-heading-font-family);
+}
+
+/* ---------- Pagination and footer of docs ---------- */
+
+.pagination-nav__link {
+  border-color: var(--cm-line);
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--cm-accent);
+}

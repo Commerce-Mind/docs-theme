@@ -1,0 +1,31 @@
+---
+title: API endpoints
+description: Hand-written endpoint docs. Generated OpenAPI reference comes later.
+sidebar_position: 4
+---
+
+For a few endpoints you can document them by hand. Larger APIs get a generated reference from
+OpenAPI.
+
+## Get a product
+
+<ApiEndpoint method="GET" path="/api/products/{id}">Returns one product</ApiEndpoint>
+
+| Parameter | In   | Type     | Description     |
+| --------- | ---- | -------- | --------------- |
+| `id`      | path | `string` | The product id. |
+
+```json title="Response 200"
+{
+  "id": "42",
+  "name": { "en": "Coffee mug", "sv": "Kaffekopp" },
+  "price": 129
+}
+```
+
+## Other methods
+
+<ApiEndpoint method="POST" path="/api/products" />
+<ApiEndpoint method="PUT" path="/api/products/{id}" />
+<ApiEndpoint method="PATCH" path="/api/products/{id}" />
+<ApiEndpoint method="DELETE" path="/api/products/{id}" />

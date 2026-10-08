@@ -1,0 +1,328 @@
+/* ---------- Card ---------- */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 1.5rem 0 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border: 1px solid var(--cm-line);
+  border-radius: 8px;
+  background: var(--cm-surface);
+  color: var(--cm-ink);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+a.card:hover {
+  border-color: var(--cm-accent);
+  color: var(--cm-ink);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.cardIcon {
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--cm-graphic);
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cardArrow {
+  color: var(--cm-accent);
+  transition: transform 0.2s;
+}
+
+a.card:hover .cardArrow {
+  transform: translateX(3px);
+}
+
+.cardBody {
+  font-size: 0.92rem;
+  color: var(--cm-ink-2);
+  line-height: 1.5;
+}
+
+.cardBody > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Steps ---------- */
+
+.steps {
+  counter-reset: step;
+  margin: 1.5rem 0;
+  padding-left: 0;
+}
+
+.steps > ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.steps > ol > li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 1.5rem 48px;
+  margin: 0;
+}
+
+.steps > ol > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--cm-line-strong);
+  background: var(--cm-surface);
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.steps > ol > li::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 36px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--cm-line);
+}
+
+.steps > ol > li:last-child::after {
+  display: none;
+}
+
+.steps > ol > li > :first-child {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  padding-top: 3px;
+}
+
+/* ---------- Badge ---------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--cm-line-strong);
+  color: var(--cm-ink-2);
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.badge_accent {
+  border-color: var(--cm-accent);
+  color: var(--cm-accent);
+}
+
+.badge_beta {
+  border-color: var(--ifm-color-info-dark);
+  color: var(--ifm-color-info-dark);
+}
+
+.badge_deprecated {
+  border-color: var(--ifm-color-danger-dark);
+  color: var(--ifm-color-danger-dark);
+}
+
+/* ---------- ApiEndpoint ---------- */
+
+.endpoint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  border: 1px solid var(--cm-line);
+  border-radius: 5px;
+  background: var(--cm-code-bg);
+  margin: 1rem 0 1.5rem;
+}
+
+.method {
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.method_get { background: #2f5fb3; }
+.method_post { background: #0b7a5a; }
+.method_put, .method_patch { background: #b45309; }
+.method_delete { background: #b42318; }
+
+.endpointPath {
+  word-break: break-all;
+}
+
+.endpointDescription {
+  font-family: var(--ifm-font-family-base);
+  color: var(--cm-ink-3);
+  font-size: 0.85rem;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  padding: 2.5rem 0 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cm-ink-3);
+  margin-bottom: 1rem;
+}
+
+.heroEyebrow::before {
+  content: '';
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--cm-graphic);
+}
+
+.heroTitle {
+  font-size: clamp(2.2rem, 5vw, 3.2rem) !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.08;
+  margin-bottom: 1rem;
+}
+
+.heroLead {
+  font-size: 1.2rem;
+  color: var(--cm-ink-2);
+  max-width: 40rem;
+  margin-bottom: 1.5rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Copy page toolbar ---------- */
+
+.pageActions {
+  float: right;
+  display: flex;
+  gap: 6px;
+  margin: 0.6rem 0 0.5rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.pageActionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--cm-line);
+  background: var(--cm-surface);
+  color: var(--cm-ink-2);
+  cursor: pointer;
+}
+
+.pageActionButton:hover {
+  border-color: var(--cm-line-strong);
+  color: var(--cm-ink);
+  text-decoration: none;
+}
+
+.pageMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 10;
+  min-width: 220px;
+  padding: 4px;
+  border: 1px solid var(--cm-line);
+  border-radius: 8px;
+  background: var(--cm-surface);
+  box-shadow: 0 8px 24px rgba(23, 18, 46, 0.12);
+}
+
+.pageMenuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: none;
+  color: var(--cm-ink);
+  cursor: pointer;
+}
+
+.pageMenuItem:hover {
+  background: var(--cm-surface-2);
+  color: var(--cm-ink);
+  text-decoration: none;
+}
+
+.pageMenuHint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--cm-ink-3);
+}
+
+@media print {
+  .pageActions {
+    display: none;
+  }
+}
+
+@media (max-width: 996px) {
+  .pageActions {
+    float: none;
+    justify-content: flex-end;
+    margin: 0 0 0.25rem;
+  }
+}

@@ -1,0 +1,77 @@
+---
+title: Get started
+description: Install the package, register it and run your first query.
+sidebar_position: 2
+---
+
+Example is a .NET library you host as part of your own application. This guide takes you from an empty
+project to a running admin UI in about ten minutes.
+
+:::info[Before you start]
+
+You need the .NET 9 SDK and access to the Commerce Mind NuGet feed.
+
+:::
+
+<Steps>
+
+1. **Add the package**
+
+   ```bash
+   dotnet add package CommerceMind.Example
+   ```
+
+2. **Register Example in `Program.cs`**
+
+   ```csharp title="Program.cs"
+   var builder = WebApplication.CreateBuilder(args);
+
+   builder.Services.AddExample(options =>
+   {
+       options.ConnectionString = builder.Configuration.GetConnectionString("Example");
+   });
+
+   var app = builder.Build();
+   // highlight-next-line
+   app.MapExample();
+   app.Run();
+   ```
+
+3. **Call the API**
+
+   <Tabs groupId="client">
+     <TabItem value="curl" label="curl" default>
+
+     ```bash
+     curl https://localhost:5001/api/products?take=10
+     ```
+
+     </TabItem>
+     <TabItem value="csharp" label="C#">
+
+     ```csharp
+     var products = await http.GetFromJsonAsync<Product[]>("/api/products?take=10");
+     ```
+
+     </TabItem>
+     <TabItem value="powershell" label="PowerShell">
+
+     ```powershell
+     Invoke-RestMethod https://localhost:5001/api/products?take=10
+     ```
+
+     </TabItem>
+   </Tabs>
+
+</Steps>
+
+## Next steps
+
+<CardGrid>
+  <Card title="Cards" href="/components/cards">
+    Link to related pages.
+  </Card>
+  <Card title="API endpoints" href="/components/api">
+    Document endpoints by hand.
+  </Card>
+</CardGrid>
