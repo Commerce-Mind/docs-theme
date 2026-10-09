@@ -193,6 +193,32 @@ h1, h2, h3, h4 {
   background-color: var(--cm-paper);
 }
 
+/* Mobile menu: Docusaurus shows the navbar links and the docs sidebar as two panels
+   with a "Back to main menu" button between them. Our navbar only has the
+   Commerce Mind link, so show one menu instead: docs first, navbar links below. */
+.navbar-sidebar__items,
+.navbar-sidebar__items--show-secondary {
+  flex-direction: column;
+  overflow-y: auto;
+  transform: none;
+}
+
+.navbar-sidebar__item {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.navbar-sidebar__item:first-child {
+  order: 2;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--cm-line);
+}
+
+.navbar-sidebar__item:empty,
+.navbar-sidebar__back {
+  display: none;
+}
+
 .navbar__brand {
   gap: 2px;
 }
