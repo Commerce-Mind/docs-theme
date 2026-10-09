@@ -104,11 +104,11 @@ module.exports = function commerceMindTheme(context, options) {
   };
 };
 
-// "/" -> "index.md", "/guides/install" -> "guides/install.md", "/guides/" -> "guides/index.md"
+// "/" -> "index.md", "/guides/install" and "/guides/install/" -> "guides/install.md"
+// (same file whether or not the site uses trailingSlash)
 function markdownPathFor(permalink) {
-  const clean = permalink.replace(/^\//, '');
-  if (clean === '' || clean.endsWith('/')) return `${clean}index.md`;
-  return `${clean}.md`;
+  const clean = permalink.replace(/^\/+|\/+$/g, '');
+  return clean === '' ? 'index.md' : `${clean}.md`;
 }
 
 // Strip front matter and MDX imports so the file reads well for people and LLMs.

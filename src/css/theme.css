@@ -178,9 +178,19 @@ h1, h2, h3, h4 {
 /* ---------- Navbar ---------- */
 
 .navbar {
-  backdrop-filter: saturate(1.4) blur(10px);
   border-top: 3px solid var(--cm-graphic);
   border-bottom: 1px solid var(--cm-line);
+}
+
+/* backdrop-filter makes the navbar the containing block for fixed children, which
+   squeezes the mobile menu (.navbar-sidebar) to the navbar's height. Only blur
+   while the mobile menu is closed. */
+.navbar:not(.navbar-sidebar--show) {
+  backdrop-filter: saturate(1.4) blur(10px);
+}
+
+.navbar-sidebar {
+  background-color: var(--cm-paper);
 }
 
 .navbar__brand {

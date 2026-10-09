@@ -1,6 +1,6 @@
 {
   "name": "@commercemind/docusaurus-theme",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Shared Docusaurus theme and config for Commerce Mind product documentation.",
   "license": "UNLICENSED",
   "main": "index.js",

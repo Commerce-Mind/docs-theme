@@ -4,9 +4,8 @@ import styles from './components.module.css';
 
 // Mirrors markdownPathFor() in index.js, which writes the .md files at build time.
 function markdownPathFor(permalink) {
-  const clean = permalink.replace(/^\//, '');
-  if (clean === '' || clean.endsWith('/')) return `${clean}index.md`;
-  return `${clean}.md`;
+  const clean = permalink.replace(/^\/+|\/+$/g, '');
+  return clean === '' ? 'index.md' : `${clean}.md`;
 }
 
 async function fetchMarkdown(mdUrl) {
