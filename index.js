@@ -57,6 +57,8 @@ module.exports = function commerceMindTheme(context, options) {
 
       for (const doc of docs) {
         if (doc.frontMatter?.draft || doc.frontMatter?.unlisted) continue;
+        // Generated OpenAPI pages (*.api.mdx, *.info.mdx, *.tag.mdx) are JSX, not prose.
+        if (/\.(api|info|tag|schema)\.mdx$/.test(doc.source)) continue;
         const sourcePath = doc.source.replace(/^@site[\\/]/, `${context.siteDir}/`);
         const raw = await fs.readFile(sourcePath, 'utf8');
         const markdown = toPlainMarkdown(raw, doc.title);

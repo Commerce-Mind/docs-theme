@@ -75,6 +75,13 @@ html:root {
   --ifm-code-background: var(--cm-surface-2);
   --docusaurus-highlighted-code-line-bg: rgba(27, 23, 48, 0.07);
 
+  /* Local search: active hit text must contrast with the accent background
+     (white on dark accents in light mode, dark on bright accents in dark mode). */
+  --search-local-hit-active-color: var(--cm-on-accent);
+  --search-local-hit-background: var(--cm-surface);
+  --search-local-modal-background: var(--cm-surface-2);
+  --search-local-hit-shadow: 0 0 0 1px var(--cm-line);
+
   /* Admonitions. Warning is deliberately amber-brown, not yellow,
      so it never reads as a yellow product accent. */
   --ifm-color-info: #2f5fb3;
