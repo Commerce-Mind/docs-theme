@@ -1,6 +1,7 @@
 const path = require('path');
 const { themes: prismThemes } = require('prism-react-renderer');
 const { products, resolveProduct } = require('./products');
+const { withContrast } = require('./prism-contrast');
 
 /**
  * Build a complete Docusaurus config for a Commerce Mind product.
@@ -19,7 +20,11 @@ const { products, resolveProduct } = require('./products');
  * @param {object[]} [opts.navbarItems] Extra navbar items, placed before search
  * @param {boolean}  [opts.hideFromSearchEngines] Send "X-Robots-Tag: noindex" (via _headers) until launch.
  *                                      Don't use siteConfig.noIndex: it also empties the site search.
- * @param {object}   [opts.docs]        Extra options for the docs plugin (e.g. docItemComponent)
+ * @param {object}   [opts.apiReference] Generated API reference from an OpenAPI document:
+ *                                      { specPath, routeBasePath = 'api/reference', outputDir = 'api-reference' }.
+ *                                      Lives in its own docs instance, so the OpenAPI theme's
+ *                                      JavaScript only loads on API pages.
+ * @param {object}   [opts.docs]        Extra options for the docs plugin
  * @param {Array}    [opts.plugins]     Extra Docusaurus plugins
  * @param {Array}    [opts.themes]      Extra Docusaurus themes
  * @param {object}   [opts.overrides]   Deep-merged into the final config
@@ -30,6 +35,7 @@ function createConfig(opts) {
   const editUrl = opts.repo
     ? `https://github.com/${opts.repo}/edit/main/${docsDir}/`
     : undefined;
+  const api = opts.apiReference ? apiReferenceConfig(opts.apiReference) : { plugins: [], themes: [] };
 
   const config = {
     title: `Commerce Mind ${product.name}`,
@@ -81,10 +87,11 @@ function createConfig(opts) {
           explicitSearchResultPath: true,
         },
       ],
+      ...api.themes,
       ...(opts.themes ?? []),
     ],
 
-    plugins: [...(opts.plugins ?? [])],
+    plugins: [...api.plugins, ...(opts.plugins ?? [])],
 
     themeConfig: {
       image: 'img/commercemind/symbol-purple.svg',
@@ -127,8 +134,9 @@ function createConfig(opts) {
         copyright: `© ${new Date().getFullYear()} Commerce Mind AB`,
       },
       prism: {
-        theme: withBackground(prismThemes.oneLight, '#f6f6f8'),
-        darkTheme: withBackground(prismThemes.oneDark, '#120e25'),
+        // Token colors adjusted to reach WCAG AA on the brand code backgrounds.
+        theme: withContrast(prismThemes.oneLight, '#f6f6f8'),
+        darkTheme: withContrast(prismThemes.oneDark, '#120e25'),
         additionalLanguages: ['csharp', 'powershell', 'bash', 'http', 'sql', 'diff', 'json'],
       },
       mermaid: { theme: { light: 'neutral', dark: 'dark' } },
@@ -138,9 +146,42 @@ function createConfig(opts) {
   return deepMerge(config, opts.overrides ?? {});
 }
 
-// Keep Prism token colors but use the brand code background.
-function withBackground(theme, backgroundColor) {
-  return { ...theme, plain: { ...theme.plain, backgroundColor } };
+// The API reference gets its own docs instance with the OpenAPI page component, so the
+// main docs keep the regular (much smaller) DocItem. The sidebar comes from the file that
+// docusaurus-plugin-openapi-docs generates (see api-sidebars.js).
+function apiReferenceConfig({ specPath, routeBasePath = 'api/reference', outputDir = 'api-reference' }) {
+  process.env.CM_API_SIDEBAR_FILE = path.resolve(outputDir, 'sidebar');
+  // Docusaurus requires the docs folder to exist before the pages are generated into it.
+  require('fs').mkdirSync(path.resolve(outputDir), { recursive: true });
+  return {
+    plugins: [
+      [
+        '@docusaurus/plugin-content-docs',
+        {
+          id: 'api',
+          path: outputDir,
+          routeBasePath,
+          sidebarPath: path.join(__dirname, 'api-sidebars.js'),
+          docItemComponent: '@theme/ApiItem',
+        },
+      ],
+      [
+        'docusaurus-plugin-openapi-docs',
+        {
+          id: 'openapi',
+          docsPluginId: 'api',
+          config: {
+            api: {
+              specPath,
+              outputDir,
+              sidebarOptions: { groupPathsBy: 'tag', categoryLinkSource: 'tag' },
+            },
+          },
+        },
+      ],
+    ],
+    themes: ['docusaurus-theme-openapi-docs'],
+  };
 }
 
 function deepMerge(target, source) {

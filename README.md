@@ -38,6 +38,25 @@ module.exports = createConfig({
 
 `text` and `textDark` must reach WCAG AA (4.5:1) against `#FFFFFF` and `#17122E`.
 
+### API reference
+
+Generate a page per endpoint from an OpenAPI document:
+
+```js
+module.exports = createConfig({
+  product: 'flux',
+  apiReference: { specPath: '.openapi/flux.json' }, // routeBasePath: 'api/reference', outputDir: 'api-reference'
+});
+```
+
+The site needs `docusaurus-plugin-openapi-docs`, `docusaurus-theme-openapi-docs`,
+`docusaurus-plugin-sass` and `sass`, a `babel.config.js` with `sourceType: 'unambiguous'`, and a
+script that runs `docusaurus gen-api-docs all` before `start` and `build`. See the Flux and Nexus docs.
+
+The reference is its own docs instance with its own sidebar, so the OpenAPI theme's JavaScript
+(about 560 KiB compressed) only loads on API pages. Link to it from the main sidebar with
+`{ type: 'link', label: 'Endpoints', href: '/api/reference/<info page>' }`.
+
 ### Before launch
 
 `hideFromSearchEngines: true` keeps a site out of Google with an `X-Robots-Tag: noindex` header

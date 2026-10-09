@@ -96,6 +96,13 @@ module.exports = function commerceMindTheme(context, options) {
         await fs.writeFile(headersPath, `${existing}/*
   X-Robots-Tag: noindex, nofollow
 `);
+      } else {
+        // Point crawlers at the sitemap. A robots.txt from the site's static folder wins.
+        const robotsPath = path.join(outDir, 'robots.txt');
+        const hasOwn = await fs.access(robotsPath).then(() => true, () => false);
+        if (!hasOwn) {
+          await fs.writeFile(robotsPath, `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
+        }
       }
 
       await fs.writeFile(path.join(outDir, 'llms.txt'), index);
