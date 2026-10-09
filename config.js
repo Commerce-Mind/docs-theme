@@ -96,8 +96,7 @@ function createConfig(opts) {
         hideOnScroll: false,
         logo: {
           alt: 'Commerce Mind',
-          src: 'img/commercemind/symbol-purple.svg',
-          srcDark: 'img/commercemind/symbol-color.svg',
+          src: 'img/commercemind/symbol-color.svg',
           href: '/',
         },
         items: [
